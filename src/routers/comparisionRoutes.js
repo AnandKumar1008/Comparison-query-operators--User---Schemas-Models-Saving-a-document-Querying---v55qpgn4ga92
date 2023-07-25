@@ -6,22 +6,26 @@
 // $lte=Matches values that are less than or equal to a specified value.
 // $in=Matches any of the values specified in an array.
 
-const router = require('express').Router();
-const User = require('../models/userModel');
+const router = require("express").Router();
+const User = require("../models/userModel");
 
 //  Will give a value which is qual to 20
-router.get('/eq', async (req, res) => {
+router.get("/eq", async (req, res) => {
   try {
     //Write a code here for eq operator
+    const user = await User.find({ age: { $eq: 20 } });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).send(error);
   }
 });
 // Will give a value which has a age greater than 20
 // Greater Than Symbol="$gt"
-router.get('/gt', async (req, res) => {
+router.get("/gt", async (req, res) => {
   try {
     //Write a code here for gt operator
+    const user = await user.find({ age: { $gt: 20 } });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -29,9 +33,11 @@ router.get('/gt', async (req, res) => {
 
 // will give a age which is greater than or equal to 20
 // Greater Than or equal to Symbol="$gte"
-router.get('/gte', async (req, res) => {
+router.get("/gte", async (req, res) => {
   try {
     //Write a code here for gte operator
+    const user = await user.find({ age: { $gte: 20 } });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -39,9 +45,11 @@ router.get('/gte', async (req, res) => {
 
 //will give a age which is less than 20
 // Less Than Symbol="$lt"
-router.get('/lt', async (req, res) => {
+router.get("/lt", async (req, res) => {
   try {
     //Write a code here for lt operator
+    const user = User.find({ age: { $lt: 20 } });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -49,9 +57,11 @@ router.get('/lt', async (req, res) => {
 
 //will give a age which is less than or equal to 20
 // Less Than Equal To Symbol="$lte"
-router.get('/lte', async (req, res) => {
+router.get("/lte", async (req, res) => {
   try {
     //Write a code here for lte operator
+    const user = User.find({ age: { $lte: 20 } });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -59,9 +69,11 @@ router.get('/lte', async (req, res) => {
 
 //will return age which includes 20,25
 //in symbol="$in"
-router.get('/in', async (req, res) => {
+router.get("/in", async (req, res) => {
   try {
     //Write a code here for in operator
+    const user = User.find({ age: { $in: [20, 25] } });
+    res.status(200).json(user);
   } catch (error) {
     res.status(404).send(error);
   }
